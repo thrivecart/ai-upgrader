@@ -21,3 +21,4 @@ Historical donor reference/, examples/ and Python core are NOT distributed.
 Progress bar + bot webhook watcher (added)
 - ai-upgrader status/upgrade print "Progress [####] n/m milestones" with per-step marks.
 - ai-upgrader-watch <repo>: posts progress/blocker/stalled/died to a webhook; needs ~/.config/ai-upgrader/watch.env (see watch.env.example), else exits with "setup bot webhook".
+- docs/confluence-example-and-bot.md

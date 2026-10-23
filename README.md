@@ -176,6 +176,13 @@ chmod 600 ~/.config/ai-upgrader/watch.env   # fill WEBHOOK_URL and WEBHOOK_AUTH_
 ai-upgrader-watch /path/to/repo             # manual start (only needed for commands other than `upgrade`)
 ```
 
+**Getting the credentials**
+
+1. In the bot automation create a webhook trigger. Copy its **URL** (`WEBHOOK_URL`) and the **auth header** it expects, as one full line (`WEBHOOK_AUTH_HEADER`, e.g. `Authorization: Bearer <key>`).
+2. Put both into `~/.config/ai-upgrader/watch.env` (created from `watch.env.example`, mode 600). Never commit this file.
+3. Paste the bot prompt from the comments of `watch.env.example` into the bot automation so it posts one status line per event (`status` events get 🔄).
+4. Check: `.upgrade/watch.log` (`webhook send failed` = wrong URL or header) and `.upgrade/events.log` (every event sent). Details and an example run: [docs/confluence-example-and-bot.md](docs/confluence-example-and-bot.md).
+
 - Without a filled config the watcher exits with `ERROR: setup bot webhook: …` (code 2).
 - Events (`kind`): `start`, `progress` (phase / milestone / status / review changed), `status` (heartbeat every `STATUS_SEC`, default 600 s: milestones accepted n/m, phase, gates, last activity), `blocker`, `stalled` (no activity for `STALL_SEC`), `died` (process gone), `stopped`, `done`.
 - Payload: `{source, repo, kind, text}`, header from `WEBHOOK_AUTH_HEADER`. Events are also appended to `.upgrade/events.log`.
