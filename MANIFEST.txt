@@ -1,0 +1,23 @@
+AI Upgrader v1.0.0 - Strict Universal (Bash-only autonomous loop)
+
+Main implementation: ai-upgrader (standalone Bash, not a loader)
+Authoritative skill: skills/universal-upgrade.md
+Offline tests: test/*.bats (Bats)
+
+Distributed files:
+- ai-upgrader
+- install.sh
+- skills/universal-upgrade.md
+- test/
+- README.md
+- MATRIX-SCHEMA.md
+- POLICY.md
+- GRACEFUL-STOP-CONTRACT.md
+- MANIFEST.txt
+- SHA256SUMS
+
+Historical donor reference/, examples/ and Python core are NOT distributed.
+
+Progress bar + bot webhook watcher (added)
+- ai-upgrader status/upgrade print "Progress [####] n/m milestones" with per-step marks.
+- ai-upgrader-watch <repo>: posts progress/blocker/stalled/died to a webhook; needs ~/.config/ai-upgrader/watch.env (see watch.env.example), else exits with "setup bot webhook".
